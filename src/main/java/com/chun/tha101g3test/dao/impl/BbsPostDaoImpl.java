@@ -24,7 +24,7 @@ public class BbsPostDaoImpl implements BbsPostDao {
             String sql = "SELECT bbs_post_id, mem_id, bbs_category_id, bbs_tag_id, post_title, post_content, " +
                     "create_time, update_time, post_views, post_likes, post_dislikes, post_status " +
                     "FROM BBS_POST " +
-                    "WHERE bbsCommentId = :bbsCommentId";
+                    "WHERE bbsPostId = :bbsPostId";
 
 
             Map<String, Object> map = new HashMap<>();
