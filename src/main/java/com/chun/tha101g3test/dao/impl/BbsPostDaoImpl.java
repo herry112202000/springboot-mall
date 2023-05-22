@@ -26,12 +26,10 @@ public class BbsPostDaoImpl implements BbsPostDao {
                     "FROM BBS_POST " +
                     "WHERE bbsPostId = :bbsPostId";
 
-
             Map<String, Object> map = new HashMap<>();
             map.put("bbsPostId", bbsPostId);
             //查詢這一筆留言的數據, 第三個參數轉換數據的rowmapper:將資料庫所查詢出來的結果 去轉換成java object
             List<BbsPost> bbsPostList = namedParameterJdbcTemplate.query(sql, map, new BbsPostRowMapper());
-
             //取得第一個值回傳回去
             if(bbsPostList.size() >0){
                 return bbsPostList.get(0);
@@ -39,5 +37,28 @@ public class BbsPostDaoImpl implements BbsPostDao {
                 return null;
             }
         }
+
+    @Override
+    public BbsPost getBbsPostByMemId(Integer memeId) {
+        String sql = "SELECT bbs_post_id, mem_id, bbs_category_id, bbs_tag_id, post_title, post_content, " +
+                "create_time, update_time, post_views, post_likes, post_dislikes, post_status " +
+                "FROM BBS_POST " +
+                "WHERE memeId = :memeId";
+        Map<String, Object> map = new HashMap<>();
+        map.put("memeId", memeId);
+        List<BbsPost> bbsPostList = namedParameterJdbcTemplate.query(sql, map, new BbsPostRowMapper());
+
+        return null;
+    }
+
+    @Override
+    public List<BbsPost> selectAll() {
+        return null;
+    }
+
+    @Override
+    public Integer createBbsPost() {
+        return null;
+    }
 
 }

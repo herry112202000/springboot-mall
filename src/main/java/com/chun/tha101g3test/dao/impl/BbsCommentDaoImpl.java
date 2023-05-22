@@ -22,8 +22,8 @@ public class BbsCommentDaoImpl implements BbsCommentDao {
     public BbsComment getBbsCommentById(Integer bbsCommentId) {
         String sql = "SELECT bbs_comment_id, bbs_post_id, mem_id, comment_content, create_time, update_time, " +
                 "comment_status " +
-                "FROM product " +
-                "WHERE bbsCommentId = :bbsCommentId";
+                "FROM BBS_COMMENT " +
+                "WHERE bbs_comment_id = :bbsCommentId";
 
 
         Map<String, Object> map = new HashMap<>();
