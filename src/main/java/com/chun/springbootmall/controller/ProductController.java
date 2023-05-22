@@ -1,7 +1,9 @@
 package com.chun.springbootmall.controller;
 
+import com.chun.springbootmall.dto.ProductRequest;
 import com.chun.springbootmall.model.Product;
 import com.chun.springbootmall.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,18 +30,28 @@ public class ProductController {
     }
 
 //    ===================================測試練習===================================================
+//    @PostMapping("/products")
+//    public ResponseEntity<Product> addData(@RequestParam("price") Integer price,
+//                                @RequestParam("productname") String productname) {
+//
+//        System.out.println(String.format("price: %s , productname: %s",price,productname));
+//        Product product = new Product();
+//
+//        product.setPrice(1000);
+//        product.setProductName("醬油");
+//
+//
+//        return ResponseEntity.status(HttpStatus.OK).body(product);
+//    }
+
     @PostMapping("/products")
-    public ResponseEntity<Product> addData(@RequestParam("price") Integer price,
-                                @RequestParam("productname") String productname) {
+    public ResponseEntity<Product> createProduct (@RequestBody @Valid ProductRequest productRequest){
+        Integer productId = productService.createProduct(productRequest);
 
-        System.out.println(String.format("price: %s , productname: %s",price,productname));
-        Product product = new Product();
+        Product product = productService.getProductById(productId);
 
-        product.setPrice(1000);
-        product.setProductName("醬油");
+        return ResponseEntity.status(HttpStatus.CREATED).body(product);
 
-
-        return ResponseEntity.status(HttpStatus.OK).body(product);
     }
 
 
