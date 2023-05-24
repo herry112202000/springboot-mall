@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bbs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bbs_category_id")
-    private Integer bbsCategoryId;
+    private Integer bbsCategoryId;  //論壇看板流水號
     @Column(name = "bbs_category_title")
-    private String bbsCategoryTitle;
+    private String bbsCategoryTitle; //論壇看板名稱
 }

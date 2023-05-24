@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 public class BbsTag {
@@ -14,7 +15,7 @@ public class BbsTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bbs_tag_id")
-    private Integer bbsTagId;
+    private Integer bbsTagId;  //文章標籤流水號
     @Column(name = "bbs_tag")
-    private String bbsTag;
+    private String bbsTag;   //文章標籤名稱
 }
