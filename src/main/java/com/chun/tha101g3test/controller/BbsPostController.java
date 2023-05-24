@@ -57,6 +57,7 @@ public class BbsPostController {
 
         Integer bbsPostId = bbsPostService.createBbsPost(bbsPostRequest);
         BbsPost bbsPost = bbsPostService.getBbsPostById(bbsPostId);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(bbsPost);
         return ResponseEntity.status(HttpStatus.CREATED).body(bbsPost);
 
     }
