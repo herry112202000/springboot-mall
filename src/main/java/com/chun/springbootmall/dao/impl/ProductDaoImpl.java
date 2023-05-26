@@ -43,9 +43,9 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Integer createProduct(ProductRequest productRequest) {
         String sql = "INSERT INTO product(product_name, category, image_url, price, stock, " +
-        "description, created_date, last_modified_date) " +
-        "VALUES (:productName, :category, :imageUrl, :price, :stock, :description," +
-        ":createdDate, :lastModifiedDate)";
+                "description, created_date, last_modified_date) " +
+                "VALUES (:productName, :category, :imageUrl, :price, :stock, :description," +
+                ":createdDate, :lastModifiedDate)";
 
         Map<String, Object> map = new HashMap<>();
         map.put("productName",productRequest.getProductName());
@@ -69,9 +69,7 @@ public class ProductDaoImpl implements ProductDao {
 
         return  productId;
 
-
-
-
-
     }
+
+
 }

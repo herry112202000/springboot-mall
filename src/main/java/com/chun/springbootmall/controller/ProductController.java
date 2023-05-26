@@ -54,6 +54,28 @@ public class ProductController {
 
     }
 
+    @PutMapping("/products/{productId}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Integer productId ,
+                                                 @RequestBody ProductRequest productRequest){
+
+        Product product = productService.getProductById(productId);
+
+        if(product == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        //更新號碼為productId ,她要修改的參數物件productRequest
+        productService.updateProduct( productId ,productRequest);
+
+        //更新更新後查詢productId
+        Product updateproduct = productService.getProductById(productId);
+        //返回狀態碼及修改後的值updateproduct
+        return ResponseEntity.status(HttpStatus.OK).body(updateproduct);
+
+
+
+    }
+
 
 
 }
