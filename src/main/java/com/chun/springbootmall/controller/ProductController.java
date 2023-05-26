@@ -73,11 +73,13 @@ public class ProductController {
         Product updateproduct = productService.getProductById(productId);
         //返回狀態碼及修改後的值updateproduct
         return ResponseEntity.status(HttpStatus.OK).body(updateproduct);
-
-
-
     }
 
+    @DeleteMapping("/products/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Integer productId){
+        productService.deleteProductById(productId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
+    }
 
 }
