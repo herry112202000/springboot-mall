@@ -58,12 +58,14 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@PathVariable Integer productId ,
                                                  @RequestBody ProductRequest productRequest){
 
+        //檢查 product 是否存在
         Product product = productService.getProductById(productId);
 
         if(product == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
+        //修改商品數據
         //更新號碼為productId ,她要修改的參數物件productRequest
         productService.updateProduct( productId ,productRequest);
 

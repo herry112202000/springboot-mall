@@ -59,15 +59,15 @@ public class BbsPostDaoImpl implements BbsPostDao {
 
 
         Map<String, Object> map = new HashMap<>();
-        map.put("memId", bbsPostRequest.getMemId());
-        map.put("bbsCategoryId", bbsPostRequest.getBbsCategoryId());
-        map.put("bbsTagId", bbsPostRequest.getBbsTagId());
-        map.put("postTitle", bbsPostRequest.getPostTitle());
-        map.put("postContent", bbsPostRequest.getPostContent());
-        map.put("postViews", bbsPostRequest.getPostViews());
-        map.put("postLikes", bbsPostRequest.getPostLikes());
-        map.put("postDislikes", bbsPostRequest.getPostDislikes());
-        map.put("postStatus", bbsPostRequest.getPostStatus());
+//        map.put("memId", bbsPostRequest.getMemId());
+//        map.put("bbsCategoryId", bbsPostRequest.getBbsCategoryId());
+//        map.put("bbsTagId", bbsPostRequest.getBbsTagId());
+//        map.put("postTitle", bbsPostRequest.getCategory().toString());
+//        map.put("postContent", bbsPostRequest.getBbsTag().toString());
+//        map.put("postViews", bbsPostRequest.getPostViews());
+//        map.put("postLikes", bbsPostRequest.getPostLikes());
+//        map.put("postDislikes", bbsPostRequest.getPostDislikes());
+//        map.put("postStatus", bbsPostRequest.getPostStatus());
 
 
 
