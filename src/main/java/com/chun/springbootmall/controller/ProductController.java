@@ -9,11 +9,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+
+    @GetMapping("/products")
+    public ResponseEntity<List<Product>> getProducts(){
+        List<Product> productList = productService.getProducts();
+        return ResponseEntity.status(HttpStatus.OK).body(productList);
+    }
+
 
     //取得某一筆商品的數據:用GET方法請求
     //@GetMapping("/products/{productId}") :表示取得某一筆商品的數據
