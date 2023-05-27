@@ -6,9 +6,12 @@ import com.chun.springbootmall.dto.ProductRequest;
 import com.chun.springbootmall.model.Product;
 import com.chun.springbootmall.service.ProductService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,18 +23,28 @@ public class ProductController {
     private ProductService productService;
 
 
+    @Validated
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProducts(@RequestParam(required = false) ProductCategory category,
-                                                     @RequestParam(required = false) String search,
-                                                     @RequestParam(defaultValue = "created_date") String orderBy,
-                                                     @RequestParam(defaultValue = "desc") String sort){
+    public ResponseEntity<List<Product>> getProducts(
+            // 查詢條件 Filtering
+            @RequestParam(required = false) ProductCategory category,
+            @RequestParam(required = false) String search,
+            // 排序 Sorting
+            @RequestParam(defaultValue = "created_date") String orderBy,
+            @RequestParam(defaultValue = "desc") String sort,
+            // 分頁  Pagination
+            @RequestParam(defaultValue = "5") @Max(1000) @Min(0) Integer limit,
+            @RequestParam(defaultValue = "0") @Min(0) Integer offset){
+
+
+
         ProductQueryParams productQueryParams = new ProductQueryParams();
-        // 查詢條件 Filtering
         productQueryParams.setCategory(category);
         productQueryParams.setSearch(search);
-        // 排序 Sorting
         productQueryParams.setOrderBy(orderBy);
         productQueryParams.setSort(sort);
+        productQueryParams.setLimit(limit);
+        productQueryParams.setOffset(offset);
 
         List<Product> productList = productService.getProducts(productQueryParams);
         return ResponseEntity.status(HttpStatus.OK).body(productList);
@@ -79,7 +92,7 @@ public class ProductController {
 
     @PutMapping("/products/{productId}")
     public ResponseEntity<Product> updateProduct(@PathVariable Integer productId ,
-                                                 @RequestBody ProductRequest productRequest){
+                                                 @RequestBody @Valid ProductRequest productRequest){
 
         //檢查 product 是否存在
         Product product = productService.getProductById(productId);
