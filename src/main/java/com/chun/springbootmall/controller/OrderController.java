@@ -3,6 +3,7 @@ package com.chun.springbootmall.controller;
 import com.chun.springbootmall.dao.OrderDao;
 import com.chun.springbootmall.dto.BuyItem;
 import com.chun.springbootmall.dto.CreateOrderRequest;
+import com.chun.springbootmall.model.Order;
 import com.chun.springbootmall.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,9 @@ public class OrderController {
                                          @RequestBody @Valid CreateOrderRequest createOrderRequest){
 
        Integer orderId =orderService.createOrder(userId, createOrderRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderId);
+
+        Order order = orderService.getOrderById(orderId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(order);
 
     }
 }
